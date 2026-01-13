@@ -482,7 +482,9 @@ extern "C" void* ThreadStats(void*) {
   return nullptr;
 }
 
+// TODO: Add Trinity seed nodes here
 static const string mainnet_seeds[] = {""};
+// TODO: Add Trinity testnet seed nodes here
 static const string testnet_seeds[] = {""};
 static const string *seeds = mainnet_seeds;
 static vector<string> vSeeds;
