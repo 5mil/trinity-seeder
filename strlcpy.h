@@ -19,6 +19,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Only define strlcpy/strlcat if not already available from the system
+#ifndef __has_builtin
+#define __has_builtin(x) 0
+#endif
+
+#if !__has_builtin(__builtin_strlcpy) && (!defined(__GLIBC__) || (__GLIBC__ < 2 || (__GLIBC__ == 2 && __GLIBC_MINOR__ < 38)))
 /*
  * Copy src to string dst of size siz.  At most siz-1 characters
  * will be copied.  Always NUL terminates (unless siz == 0).
@@ -87,4 +93,5 @@ inline size_t strlcat(char *dst, const char *src, size_t siz)
 
     return(dlen + (s - src)); /* count does not include NUL */
 }
+#endif
 #endif
